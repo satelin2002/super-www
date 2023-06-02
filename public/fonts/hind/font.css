@@ -1,0 +1,88 @@
+/**
+ * @license
+ *
+ * Font Family: Hind
+ * Designed by: Manushi Parikh
+ * URL: https://www./fonts/hindhare.com//fonts/hind/hind
+ * © 2023 Indian Type Foundry
+ *
+ * Font Styles:
+ * Hind Variable(Variable font)
+ * Hind Light
+ * Hind Regular
+ * Hind Medium
+ * Hind Semi Bold
+ * Hind Bold
+ *
+*/
+
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 300.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 700.0)
+
+*/
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-Variable.woff2') format('woff2'),
+		url('/fonts/hind/Hind-Variable.woff') format('woff'),
+		url('/fonts/hind/Hind-Variable.ttf') format('truetype');
+	font-weight: 300 700;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-Light.woff2') format('woff2'),
+		url('/fonts/hind/Hind-Light.woff') format('woff'),
+		url('/fonts/hind/Hind-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-Regular.woff2') format('woff2'),
+		url('/fonts/hind/Hind-Regular.woff') format('woff'),
+		url('/fonts/hind/Hind-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-Medium.woff2') format('woff2'),
+		url('/fonts/hind/Hind-Medium.woff') format('woff'),
+		url('/fonts/hind/Hind-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-SemiBold.woff2') format('woff2'),
+		url('/fonts/hind/Hind-SemiBold.woff') format('woff'),
+		url('/fonts/hind/Hind-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hind';
+	src: url('/fonts/hind/Hind-Bold.woff2') format('woff2'),
+		url('/fonts/hind/Hind-Bold.woff') format('woff'),
+		url('/fonts/hind/Hind-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-display: swap;
+	font-style: normal;
+}
