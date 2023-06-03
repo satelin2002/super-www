@@ -1,4 +1,4 @@
-import { type Password, type User } from '@prisma/client'
+import { type User } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { Authenticator } from 'remix-auth'
 import invariant from 'tiny-invariant'
@@ -107,12 +107,12 @@ export async function requireAnonymous(request: Request) {
 
 export async function signup({
 	email,
-	username,
+
 	password,
 	name,
 }: {
 	email: User['email']
-	username: User['username']
+
 	name: User['name']
 	password: string
 }) {
@@ -124,7 +124,7 @@ export async function signup({
 			user: {
 				create: {
 					email,
-					username,
+
 					name,
 					password: {
 						create: {
@@ -144,24 +144,24 @@ export async function getPasswordHash(password: string) {
 	return hash
 }
 
-export async function verifyLogin(
-	username: User['username'],
-	password: Password['hash'],
-) {
-	const userWithPassword = await prisma.user.findUnique({
-		where: { username },
-		select: { id: true, password: { select: { hash: true } } },
-	})
+// export async function verifyLogin(
+// 	username: User['username'],
+// 	password: Password['hash'],
+// ) {
+// 	const userWithPassword = await prisma.user.findUnique({
+// 		where: { username },
+// 		select: { id: true, password: { select: { hash: true } } },
+// 	})
 
-	if (!userWithPassword || !userWithPassword.password) {
-		return null
-	}
+// 	if (!userWithPassword || !userWithPassword.password) {
+// 		return null
+// 	}
 
-	const isValid = await bcrypt.compare(password, userWithPassword.password.hash)
+// 	const isValid = await bcrypt.compare(password, userWithPassword.password.hash)
 
-	if (!isValid) {
-		return null
-	}
+// 	if (!isValid) {
+// 		return null
+// 	}
 
-	return { id: userWithPassword.id }
-}
+// 	return { id: userWithPassword.id }
+// }
