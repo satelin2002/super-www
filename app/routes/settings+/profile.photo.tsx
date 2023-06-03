@@ -47,7 +47,7 @@ export async function loader({ request }: DataFunctionArgs) {
 	const userId = await requireUserId(request)
 	const user = await prisma.user.findUnique({
 		where: { id: userId },
-		select: { imageId: true, name: true, username: true },
+		select: { imageId: true, name: true, email: true },
 	})
 	if (!user) {
 		throw await authenticator.logout(request, { redirectTo: '/' })
@@ -158,7 +158,7 @@ export default function PhotoChooserModal() {
 						<img
 							src={newImageSrc ?? getUserImgSrc(data.user.imageId)}
 							className="h-64 w-64 rounded-full"
-							alt={data.user.name ?? data.user.username}
+							alt={data.user.name ?? data.user.email}
 						/>
 						<ErrorList errors={photoFile.errors} id={photoFile.id} />
 						<input

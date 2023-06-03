@@ -3,7 +3,7 @@ import {
 	type V2_MetaFunction,
 	type DataFunctionArgs,
 } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+// import { useLoaderData } from '@remix-run/react'
 import { GeneralErrorBoundary } from '~/components/error-boundary.tsx'
 import { Spacer } from '~/components/spacer.tsx'
 import { requireAnonymous } from '~/utils/auth.server.ts'

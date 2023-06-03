@@ -52,7 +52,6 @@ export async function loader({ request }: DataFunctionArgs) {
 		select: {
 			id: true,
 			name: true,
-			username: true,
 			email: true,
 			imageId: true,
 		},
@@ -110,11 +109,11 @@ export async function action({ request }: DataFunctionArgs) {
 	}
 
 	const updatedUser = await prisma.user.update({
-		select: { id: true, username: true },
+		select: { id: true, email: true },
 		where: { id: userId },
 		data: {
 			name,
-			username,
+			email,
 			password: newPassword
 				? {
 						update: {
@@ -125,7 +124,7 @@ export async function action({ request }: DataFunctionArgs) {
 		},
 	})
 
-	return redirect(`/users/${updatedUser.username}`, { status: 302 })
+	return redirect(`/users/${updatedUser.email}`, { status: 302 })
 }
 
 export default function EditUserProfile() {
@@ -147,7 +146,7 @@ export default function EditUserProfile() {
 			return parse(formData, { schema: ProfileFormSchema })
 		},
 		defaultValue: {
-			username: data.user.username,
+			username: data.user.email,
 			name: data.user.name ?? '',
 			email: data.user.email,
 		},
@@ -157,7 +156,7 @@ export default function EditUserProfile() {
 	return (
 		<div className="container m-auto mb-36 mt-16 max-w-3xl">
 			<div className="flex gap-3">
-				<Link className="text-day-300" to={`/users/${data.user.username}`}>
+				<Link className="text-day-300" to={`/users/${data.user.email}`}>
 					Profile
 				</Link>
 				<span className="text-day-300">▶️</span>
@@ -168,7 +167,7 @@ export default function EditUserProfile() {
 					<div className="relative h-52 w-52">
 						<img
 							src={getUserImgSrc(data.user.imageId)}
-							alt={data.user.username}
+							alt={data.user.email}
 							className="h-full w-full rounded-full object-cover"
 						/>
 						<Link
