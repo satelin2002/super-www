@@ -158,7 +158,7 @@ export function getButtonClassName({
 	const extraSmallClassName = 'py-2 px-3 text-body-xs'
 	const smallClassName = 'px-10 py-[14px] text-body-xs'
 	const outlineClassName =
-		'border border-input hover:border-gray-900 text-gray-700 muted'
+		'border border-input hover:border-gray-900 hover:bg-gray-50 text-gray-700 '
 	const mediumClassName = 'px-14 py-5 text-lg'
 	const mediumWideClassName = 'px-24 py-5 text-lg'
 	const pillClassName = 'px-12 py-3 leading-3'

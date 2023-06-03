@@ -9,10 +9,11 @@ import { Spacer } from '~/components/spacer.tsx'
 import { requireAnonymous } from '~/utils/auth.server.ts'
 import { getSession } from '~/utils/session.server.ts'
 import { InlineLogin } from '../resources+/login.tsx'
-// import { Toaster, toast } from 'react-hot-toast'
+import { ToastContainer, toast } from 'react-toastify'
 import { ButtonLink } from '~/utils/forms.tsx'
 import { ChevronLeft } from 'lucide-react'
-// import React from 'react'
+import { useLoaderData } from '@remix-run/react'
+import { useEffect } from 'react'
 
 export async function loader({ request }: DataFunctionArgs) {
 	console.log('LOOOOOOOOOOOOGING')
@@ -20,6 +21,7 @@ export async function loader({ request }: DataFunctionArgs) {
 	const session = await getSession(request.headers.get('cookie'))
 	const magicLinkSent = session.has('auth:magiclink')
 	const magicLinkEmail = session.get('auth:email')
+
 	return json({
 		magicLinkSent,
 		magicLinkEmail,
@@ -31,16 +33,24 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function LoginPage() {
-	// const { magicLinkSent, magicLinkEmail } = useLoaderData<typeof loader>()
+	const { magicLinkSent, magicLinkEmail } = useLoaderData<typeof loader>()
+
+	useEffect(() => {
+		if (!magicLinkSent) {
+			return
+		}
+		toast('Wow so easy!')
+	}, [magicLinkSent, magicLinkEmail])
+
+	if (magicLinkEmail) {
+		toast('Wow so easy!')
+	}
 
 	return (
 		<>
+			<ToastContainer />
 			<header className="container mx-auto px-4 py-6 sm:px-0">
 				<nav className="flex justify-between">
-					{/* <Link to="/">
-						<div className="font-light">epic</div>
-						<div className="font-bold">notes</div>
-					</Link> */}
 					<div className="flex items-center gap-10">
 						<ButtonLink to="/" size="sm" variant="outline">
 							<ChevronLeft className="mr-0.5 h-5" aria-hidden="true" />

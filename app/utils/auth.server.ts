@@ -37,7 +37,6 @@ authenticator.use(
 		// and you should return the user instance
 		async ({
 			email,
-			form,
 			magicLinkVerify,
 		}: {
 			email: string

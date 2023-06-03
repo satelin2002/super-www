@@ -9,8 +9,8 @@ export const dataCleanup = {
 	users: new Set<string>(),
 }
 
-export function deleteUserByUsername(username: string) {
-	return prisma.user.delete({ where: { username } })
+export function deleteUserByUsername(email: string) {
+	return prisma.user.delete({ where: { email } })
 }
 
 export async function insertNewUser({ password }: { password?: string } = {}) {
@@ -24,7 +24,7 @@ export async function insertNewUser({ password }: { password?: string } = {}) {
 				},
 			},
 		},
-		select: { id: true, name: true, username: true, email: true },
+		select: { id: true, name: true, email: true },
 	})
 	dataCleanup.users.add(user.id)
 	return user
@@ -58,7 +58,6 @@ export async function loginPage({
 				select: {
 					id: true,
 					email: true,
-					username: true,
 					name: true,
 				},
 		  })
