@@ -1,4 +1,4 @@
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+// import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { cssBundleHref } from '@remix-run/css-bundle'
 import {
 	json,
@@ -7,8 +7,6 @@ import {
 	type V2_MetaFunction,
 } from '@remix-run/node'
 import {
-	Form,
-	Link,
 	Links,
 	LiveReload,
 	Meta,
@@ -16,16 +14,11 @@ import {
 	Scripts,
 	ScrollRestoration,
 	useLoaderData,
-	useSubmit,
 } from '@remix-run/react'
 import tailwindStylesheetUrl from './styles/tailwind.css'
-import { getUser } from './utils/auth.server.ts'
+// import { getUser } from './utils/auth.server.ts'
 import { getEnv } from './utils/env.server.ts'
-import { ButtonLink } from './utils/forms.tsx'
-import { getUserImgSrc } from './utils/misc.ts'
-import { useUser } from './utils/user.ts'
 import { useNonce } from './utils/nonce-provider.ts'
-import { Toaster } from 'react-hot-toast'
 
 export const links: LinksFunction = () => {
 	return [
@@ -63,7 +56,7 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export async function loader({ request }: DataFunctionArgs) {
-	const user = await getUser(request)
+	// const user = await getUser(request)
 	console.log('ROOOOOOOOOOOOOOt')
 	return json({ ENV: getEnv() })
 }
@@ -71,7 +64,6 @@ export async function loader({ request }: DataFunctionArgs) {
 export default function App() {
 	const data = useLoaderData<typeof loader>()
 	const nonce = useNonce()
-	const { user } = data
 
 	return (
 		<html lang="en" className="h-full">
@@ -99,64 +91,64 @@ export default function App() {
 	)
 }
 
-function UserDropdown() {
-	const user = useUser()
-	const submit = useSubmit()
-	return (
-		<DropdownMenu.Root>
-			<DropdownMenu.Trigger asChild>
-				<Link
-					to={`/users/${user.email}`}
-					// this is for progressive enhancement
-					onClick={e => e.preventDefault()}
-					className="flex items-center gap-2 rounded-full bg-day-500 py-2 pl-2 pr-4 outline-none hover:bg-day-400 focus:bg-day-400 radix-state-open:bg-day-400"
-				>
-					<img
-						className="h-8 w-8 rounded-full object-cover"
-						alt={user.name ?? user.email}
-						src={getUserImgSrc(user.imageId)}
-					/>
-					<span className="text-body-sm font-bold">
-						{user.name ?? user.email}
-					</span>
-				</Link>
-			</DropdownMenu.Trigger>
-			<DropdownMenu.Portal>
-				<DropdownMenu.Content
-					sideOffset={8}
-					align="start"
-					className="flex flex-col rounded-3xl bg-[#323232]"
-				>
-					<DropdownMenu.Item asChild>
-						<Link
-							prefetch="intent"
-							to={`/users/${user.email}`}
-							className="rounded-t-3xl px-7 py-5 outline-none hover:bg-day-500 radix-highlighted:bg-day-500"
-						>
-							Profile
-						</Link>
-					</DropdownMenu.Item>
-					<DropdownMenu.Item asChild>
-						<Link
-							prefetch="intent"
-							to={`/users/${user.email}/notes`}
-							className="px-7 py-5 outline-none hover:bg-day-500 radix-highlighted:bg-day-500"
-						>
-							Notes
-						</Link>
-					</DropdownMenu.Item>
-					<DropdownMenu.Item asChild>
-						<Form
-							action="/logout"
-							method="POST"
-							className="rounded-b-3xl px-7 py-5 outline-none radix-highlighted:bg-day-500"
-							onClick={e => submit(e.currentTarget)}
-						>
-							<button type="submit">Logout</button>
-						</Form>
-					</DropdownMenu.Item>
-				</DropdownMenu.Content>
-			</DropdownMenu.Portal>
-		</DropdownMenu.Root>
-	)
-}
+// function UserDropdown() {
+// 	const user = useUser()
+// 	const submit = useSubmit()
+// 	return (
+// 		<DropdownMenu.Root>
+// 			<DropdownMenu.Trigger asChild>
+// 				<Link
+// 					to={`/users/${user.email}`}
+// 					// this is for progressive enhancement
+// 					onClick={e => e.preventDefault()}
+// 					className="flex items-center gap-2 rounded-full bg-day-500 py-2 pl-2 pr-4 outline-none hover:bg-day-400 focus:bg-day-400 radix-state-open:bg-day-400"
+// 				>
+// 					<img
+// 						className="h-8 w-8 rounded-full object-cover"
+// 						alt={user.name ?? user.email}
+// 						src={getUserImgSrc(user.imageId)}
+// 					/>
+// 					<span className="text-body-sm font-bold">
+// 						{user.name ?? user.email}
+// 					</span>
+// 				</Link>
+// 			</DropdownMenu.Trigger>
+// 			<DropdownMenu.Portal>
+// 				<DropdownMenu.Content
+// 					sideOffset={8}
+// 					align="start"
+// 					className="flex flex-col rounded-3xl bg-[#323232]"
+// 				>
+// 					<DropdownMenu.Item asChild>
+// 						<Link
+// 							prefetch="intent"
+// 							to={`/users/${user.email}`}
+// 							className="rounded-t-3xl px-7 py-5 outline-none hover:bg-day-500 radix-highlighted:bg-day-500"
+// 						>
+// 							Profile
+// 						</Link>
+// 					</DropdownMenu.Item>
+// 					<DropdownMenu.Item asChild>
+// 						<Link
+// 							prefetch="intent"
+// 							to={`/users/${user.email}/notes`}
+// 							className="px-7 py-5 outline-none hover:bg-day-500 radix-highlighted:bg-day-500"
+// 						>
+// 							Notes
+// 						</Link>
+// 					</DropdownMenu.Item>
+// 					<DropdownMenu.Item asChild>
+// 						<Form
+// 							action="/logout"
+// 							method="POST"
+// 							className="rounded-b-3xl px-7 py-5 outline-none radix-highlighted:bg-day-500"
+// 							onClick={e => submit(e.currentTarget)}
+// 						>
+// 							<button type="submit">Logout</button>
+// 						</Form>
+// 					</DropdownMenu.Item>
+// 				</DropdownMenu.Content>
+// 			</DropdownMenu.Portal>
+// 		</DropdownMenu.Root>
+// 	)
+// }

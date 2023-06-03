@@ -9,10 +9,10 @@ import { Spacer } from '~/components/spacer.tsx'
 import { requireAnonymous } from '~/utils/auth.server.ts'
 import { getSession } from '~/utils/session.server.ts'
 import { InlineLogin } from '../resources+/login.tsx'
-import { Toaster, toast } from 'react-hot-toast'
+// import { Toaster, toast } from 'react-hot-toast'
 import { ButtonLink } from '~/utils/forms.tsx'
-import { ChevronLeft, MoveLeft } from 'lucide-react'
-import React from 'react'
+import { ChevronLeft } from 'lucide-react'
+// import React from 'react'
 
 export async function loader({ request }: DataFunctionArgs) {
 	console.log('LOOOOOOOOOOOOGING')
@@ -31,11 +31,10 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export default function LoginPage() {
-	const { magicLinkSent, magicLinkEmail } = useLoaderData<typeof loader>()
+	// const { magicLinkSent, magicLinkEmail } = useLoaderData<typeof loader>()
 
 	return (
 		<>
-			<Toaster />
 			<header className="container mx-auto px-4 py-6 sm:px-0">
 				<nav className="flex justify-between">
 					{/* <Link to="/">
