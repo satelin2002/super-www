@@ -16,9 +16,9 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import tailwindStylesheetUrl from './styles/tailwind.css'
-// import { getUser } from './utils/auth.server.ts'
 import { getEnv } from './utils/env.server.ts'
 import { useNonce } from './utils/nonce-provider.ts'
+import { getUser } from './utils/auth.server.ts'
 
 export const links: LinksFunction = () => {
 	return [
@@ -56,9 +56,9 @@ export const meta: V2_MetaFunction = () => {
 }
 
 export async function loader({ request }: DataFunctionArgs) {
-	// const user = await getUser(request)
+	const user = await getUser(request)
 	console.log('ROOOOOOOOOOOOOOt')
-	return json({ ENV: getEnv() })
+	return json({ user, ENV: getEnv() })
 }
 
 export default function App() {

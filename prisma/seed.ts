@@ -70,7 +70,6 @@ async function seed() {
 	await prisma.user.create({
 		data: {
 			email: 'kody@kcd.dev',
-			username: 'kody',
 			name: 'Kody',
 			roles: { connect: { id: adminRole.id } },
 			image: {
